@@ -140,6 +140,12 @@ class MapManager {
  * It is called once the page has been fully loaded.
  */
 // ... your code here ...
+updateLocation = () => {
+    LocationHelper.findLocation((location) => {
+        // Update the location details in the page
+        document.getElementById("latitude").textContent = location.latitude;
+        document.getElementById("longitude").textContent = location.longitude;
+
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
