@@ -140,14 +140,37 @@ class MapManager {
  * It is called once the page has been fully loaded.
  */
 // ... your code here ...
-updateLocation = () => {
-    LocationHelper.findLocation((location) => {
-        // Update the location details in the page
-        document.getElementById("latitude").textContent = location.latitude;
-        document.getElementById("longitude").textContent = location.longitude;
+function updateLocation () {
+    LocationHelper.findLocation((locationHelper) => { //weil findlocation eine staische Mehode ist, direkt über Klassenname aufrufen.
+       //Eingabefelder finden und mit den Werten aus locationHelper befüllen
+        document.getElementById("latitude").value = locationHelper.latitude;
+        document.getElementById("longitude").value = locationHelper.longitude;
 
+        document.getElementById("hiddenLatitude").value = locationHelper.latitude;
+        document.getElementById("hiddenLongitude").value = locationHelper.longitude;
 
-// Wait for the page to fully load its DOM content, then call updateLocation
+        //MapManager initialisieren und Karte mit Markern aktualisieren
+        const mapManager = new MapManager(); //neue Instanz der Klasse MapManager erstellen
+        mapManager.initMap(locationHelper.latitude, locationHelper.longitude); //Karte initialisieren
+        mapManager.updateMarkers(locationHelper.latitude, locationHelper.longitude); //Marker aktualisieren
+
+        const mapView = document.getElementById("mapView"); //Zeiger auf Bild und Beschriftung speichern damit ich sie später mit DOM löschen kann 
+        if (mapView) {
+            const mapCaption = mapView.nextElementSibling; //das nächste Element nach mapView ist die Caption 
+            mapView.remove(); //Bild löschen
+            if (mapCaption) {
+                mapCaption.remove(); //Caption löschen
+            }
+            //waum überhaupt über javaScript löschen und nicht einfach in html?
+            //Wenn der Nutzer JavaScript deaktiviert hat oder die Standortabfrage ableht bleibt Platzhalter Bild stehen staat einen weißen Kasten. Wenn JavaScript aktiv ist und Standortabfrage erfolgreich, wird das Bild durch die Karte ersetzt.
+        }
+    
+    });
+ }
+
+   
+
+    // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
+   updateLocation()
 });

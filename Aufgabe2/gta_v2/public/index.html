@@ -12,6 +12,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoTagApp</title>
@@ -37,13 +38,13 @@
                 <fieldset>
                     <legend>Add a new Geotag!</legend>
                 <label for "latitude">Latidude:</label>
-                <input type ="text" id="latidudeinput" placeholder="48,99" readonly >
+                <input type ="text" id="latitude" placeholder="48,99" readonly >
                 <label for "longitude">Longitude:</label>
                 <input type ="text" id="longitude" placeholder="81,4" readonly>
                 <label for "name">Name:</label>
                 <input type ="text" id="name" placeholder="e.g HKA" maxlength="10" required>
                 <label for "hashtag">Hashtag: </label>
-                <input type ="text" id ="hashtag " placeholder="e.g #karlsruhe" maxlength="11" pattern="#[A-Za-z]{1,10}" >
+                <input type ="text" id ="hashtag " placeholder="e.g #karlsruhe" pattern="#[A-Za-z]{1,10}" >
 
                 <label for "AddGeotagButton"></label>
                 <input type="button" value="Add Geotag"id="AddGeotagButton"> 
@@ -66,8 +67,8 @@
                     <label for "searchterm">Search term or keywords:</label>
                     <input type="text" id="searchinput" placeholder="e.g. Berlin">
                     
-                    <input type="hidden" id="hiddenlatitude" value="48.145">
-                    <input type="hidden" id="hiddenlongitude" value="9.592">
+                    <input type="hidden" id="hiddenLatitude" value="48.145">
+                    <input type="hidden" id="hiddenLongitude" value="9.592">
                     
                     <input type="button" value="Search" id="SearchButton">
                 </fieldset>
@@ -100,6 +101,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./javascripts/geotagging.js"></script>
+
 </body>
 
 </html>
